@@ -6,6 +6,7 @@ import AppNavbar from './AppNavbar';
 class AlunoEdit extends Component {
 
     emptyItem = {
+        id: '',
         nome: '',
         classe: ''
     };
@@ -39,7 +40,7 @@ class AlunoEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch('/alunos' + (item.id ? '/' + item.id : ''), {
+        await fetch((item.id) ? '/alunos/' + item.id  : '/alunos', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -47,7 +48,7 @@ class AlunoEdit extends Component {
             },
             body: JSON.stringify(item),
         });
-        this.props.history.push('/aluno');
+        this.props.history.push('/alunos');
     }
 
     render() {
@@ -71,7 +72,7 @@ class AlunoEdit extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Salvar</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/aluno">Cancelar</Button>
+                        <Button color="secondary" tag={Link} to="/alunos">Cancelar</Button>
                     </FormGroup>
                 </Form>
             </Container>
