@@ -4,18 +4,14 @@ import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 
+
 class Home extends Component {
     render() {
         return (
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <Button color="link"><Link to="/alunos">Alunos</Link></Button>
-                    <Button color="link"><Link to="/mentores">Mentores</Link></Button>
-                    <Button color="link"><Link to="/mentorias">Mentorias</Link></Button>
-                    <Button color="link"><Link to="/programas">Programas</Link></Button>
-                    <Button color="link"><Link to="/materias">Materias</Link></Button>
-                    <Button color="link"><Link to="/notas">Notas</Link></Button>
+                    <h3>Fazer um dashboard aqui!!</h3>
                 </Container>
             </div>
         );
