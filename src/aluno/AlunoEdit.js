@@ -71,8 +71,8 @@ class AlunoEdit extends Component {
                                onChange={this.handleChange} autoComplete="classe"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Salvar</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/alunos">Cancelar</Button>
+                        <Button className="btn btn-outline-success" type="submit">Salvar</Button>{' '}
+                        <Button className="btn btn-outline-danger" tag={Link} to="/alunos">Cancelar</Button>
                     </FormGroup>
                 </Form>
             </Container>
