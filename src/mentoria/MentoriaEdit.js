@@ -3,36 +3,38 @@ import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import AppNavbar from '../AppNavbar';
 class MentoriaEdit extends Component {
-    emptyItem = {
+    emptyMentoria = {
         id: '',
         aluno: {id:'', nome:'', classe: ''},
         mentor: {id:'', nome:'', pais: ''}
     };
+
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+            mentorias: this.emptyMentoria,
+            alunos: []
         };
-        this.alunosState= {alunos: []};
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const mentoria = await (await fetch(`/mentorias/${this.props.match.params.id}`)).json();
-            this.setState({item: mentoria});
-            fetch('/alunos')
-                .then(response => response.json())
-                .then(data => this.setState({alunos: data}));
+            const mentorias = await (await fetch(`/mentorias/${this.props.match.params.id}`)).json();
+            this.setState({mentorias: mentorias});
+
+            const alunos = await (await fetch(`/alunos`)).json();
+            this.setState({alunos: alunos});
         }
     }
     handleChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        let item = {...this.state.item};
-        item[name] = value;
-        this.setState({item});
+        let mentorias = {...this.state.mentorias};
+        mentorias[name] = value;
+        this.setState({mentorias});
     }
     async handleSubmit(event) {
         event.preventDefault();
@@ -48,9 +50,15 @@ class MentoriaEdit extends Component {
         this.props.history.push('/mentorias');
     }
     render() {
-        const {item} = this.state;
-        const {alunos} = this.alunosState;
-        const title = <h2>{item.id ? 'Editar Mentoria' : 'Adicionar Mentoria'}</h2>;
+        const {mentorias} = this.state;
+        const {alunos} = this.state;
+
+        const title = <h2>{mentorias.id ? 'Editar Mentoria' : 'Adicionar Mentoria'}</h2>;
+
+        const selectAlunos = alunos.map(aluno =>{
+            return <option>{aluno.id} - {aluno.nome}</option>;
+        });
+
         return <div>
             <AppNavbar/>
             <Container>
@@ -59,13 +67,14 @@ class MentoriaEdit extends Component {
                     <FormGroup>
                         <div className="form-group col-md-4">
                             <Label for="aluno">Aluno</Label>
-                            <select id="aluno" className="form-control" name="aluno" value={alunos.id || ''}>
+                            <select id="aluno" className="form-control" name="aluno">
+                                {selectAlunos}
                             </select>
                         </div>
                     </FormGroup>
                     <FormGroup>
                         <Label for="mentor">Mentor</Label>
-                        <Input type="text" name="mentor" id="mentor" value={item.mentor.nome || ''}
+                        <Input type="text" name="mentor" id="mentor" value={mentorias.mentor.nome || ''}
                                onChange={this.handleChange} autoComplete="mentor"/>
                     </FormGroup>
                     <FormGroup>

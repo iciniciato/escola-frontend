@@ -33,16 +33,16 @@ class MentoriaList extends Component {
         }
         const mentoriaList = mentorias.map(mentoria => {
             return <tr key={mentoria.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{mentoria.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{mentoria.aluno.nome}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{mentoria.mentor.nome}</td>
-                <td>
-                    <FormGroup>
-                        <Button type="button" className="btn btn-outline-primary" tag={Link} to={"/mentorias/" + mentoria.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger" onClick={() => this.remove(mentoria.id)}>Deletar</Button>
-                    </FormGroup>
-                </td>
-            </tr>
+                        <td style={{whiteSpace: 'nowrap'}}>{mentoria.id}</td>
+                        <td style={{whiteSpace: 'nowrap'}}>{mentoria.aluno.nome}</td>
+                        <td style={{whiteSpace: 'nowrap'}}>{mentoria.mentor.nome}</td>
+                        <td>
+                            <FormGroup>
+                                <Button type="button" className="btn btn-outline-primary" tag={Link} to={"/mentorias/" + mentoria.id}>Editar</Button>{' '}
+                                <Button type="button" className="btn btn-outline-danger" onClick={() => this.remove(mentoria.id)}>Deletar</Button>
+                            </FormGroup>
+                        </td>
+                    </tr>
         });
         return (
             <div>
