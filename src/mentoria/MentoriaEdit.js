@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {Button, Container, Form, FormGroup, Label} from 'reactstrap';
 import AppNavbar from '../AppNavbar';
+
 class MentoriaEdit extends Component {
+
     emptyMentoria = {
         id: '',
-        aluno: {id:'', nome:'', classe: ''},
-        mentor: {id:'', nome:'', pais: ''}
+        aluno: {id: '', nome: '', classe: ''},
+        mentor: {id: '', nome: '', pais: ''}
     };
 
     constructor(props) {
         super(props);
         this.state = {
             mentorias: this.emptyMentoria,
-            alunos: []
+            alunos: [],
+            mentores: []
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
             const mentorias = await (await fetch(`/mentorias/${this.props.match.params.id}`)).json();
@@ -26,8 +30,12 @@ class MentoriaEdit extends Component {
 
             const alunos = await (await fetch(`/alunos`)).json();
             this.setState({alunos: alunos});
+
+            const mentores = await (await fetch(`/mentores`)).json();
+            this.setState({mentores: mentores});
         }
     }
+
     handleChange(event) {
         const target = event.target;
         const value = target.value;
@@ -36,10 +44,11 @@ class MentoriaEdit extends Component {
         mentorias[name] = value;
         this.setState({mentorias});
     }
+
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
-        await fetch((item.id) ? '/mentorias/' + item.id  : '/mentorias', {
+        await fetch((item.id) ? '/mentorias/' + item.id : '/mentorias', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -49,14 +58,28 @@ class MentoriaEdit extends Component {
         });
         this.props.history.push('/mentorias');
     }
+
     render() {
         const {mentorias} = this.state;
         const {alunos} = this.state;
+        const {mentores} = this.state;
 
         const title = <h2>{mentorias.id ? 'Editar Mentoria' : 'Adicionar Mentoria'}</h2>;
 
-        const selectAlunos = alunos.map(aluno =>{
+        const selectAlunos = alunos.map(aluno => {
+
+            if (mentorias.aluno.id === aluno.id) {
+                return <option selected>{aluno.id} - {aluno.nome}</option>;
+            }
             return <option>{aluno.id} - {aluno.nome}</option>;
+        });
+
+        const selectMentores = mentores.map(mentor => {
+
+            if (mentorias.mentor.id === mentor.id) {
+                return <option selected>{mentor.id} - {mentor.nome}</option>;
+            }
+            return <option>{mentor.id} - {mentor.nome}</option>;
         });
 
         return <div>
@@ -73,9 +96,12 @@ class MentoriaEdit extends Component {
                         </div>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="mentor">Mentor</Label>
-                        <Input type="text" name="mentor" id="mentor" value={mentorias.mentor.nome || ''}
-                               onChange={this.handleChange} autoComplete="mentor"/>
+                        <div className="form-group col-md-4">
+                            <Label for="mentor">Mentor</Label>
+                            <select id="mentor" className="form-control" name="mentor">
+                                {selectMentores}
+                            </select>
+                        </div>
                     </FormGroup>
                     <FormGroup>
                         <Button className="btn btn-outline-success" type="submit">Salvar</Button>{' '}
@@ -86,4 +112,5 @@ class MentoriaEdit extends Component {
         </div>
     }
 }
+
 export default withRouter(MentoriaEdit);

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 import AppNavbar from '../AppNavbar';
 
 class AlunoEdit extends Component {
@@ -40,7 +40,7 @@ class AlunoEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch((item.id) ? '/alunos/' + item.id  : '/alunos', {
+        await fetch((item.id) ? '/alunos/' + item.id : '/alunos', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',

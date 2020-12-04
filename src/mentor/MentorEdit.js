@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 import AppNavbar from '../AppNavbar';
 
 class MentorEdit extends Component {
@@ -40,7 +40,7 @@ class MentorEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch((item.id) ? '/mentores/' + item.id  : '/mentores', {
+        await fetch((item.id) ? '/mentores/' + item.id : '/mentores', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',

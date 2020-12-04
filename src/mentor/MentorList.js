@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Button, Container, FormGroup, Table,} from 'reactstrap';
 import AppNavbar from '../AppNavbar';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class MentorList extends Component {
 
@@ -46,8 +46,10 @@ class MentorList extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{mentor.pais}</td>
                 <td>
                     <FormGroup>
-                        <Button type="button" className="btn btn-outline-primary" tag={Link} to={"/mentores/" + mentor.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger" onClick={() => this.remove(mentor.id)}>Deletar</Button>
+                        <Button type="button" className="btn btn-outline-primary" tag={Link}
+                                to={"/mentores/" + mentor.id}>Editar</Button>{' '}
+                        <Button type="button" className="btn btn-outline-danger"
+                                onClick={() => this.remove(mentor.id)}>Deletar</Button>
                     </FormGroup>
                 </td>
             </tr>
@@ -58,7 +60,8 @@ class MentorList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/mentores/new">Adicionar Mentor</Button>
+                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/mentores/new">Adicionar
+                            Mentor</Button>
                     </div>
                     <h3>Mentores</h3>
                     <Table className="mt-4">

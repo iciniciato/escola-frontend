@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Home from './Home';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import AlunoList from './aluno/AlunoList';
 import AlunoEdit from './aluno/AlunoEdit';
 import MentoriaList from './mentoria/MentoriaList';
@@ -10,24 +10,24 @@ import MentorList from './mentor/MentorList';
 import MentorEdit from './mentor/MentorEdit';
 
 class App extends Component {
-  render() {
-    return (
-        <Router>
-          <Switch>
-            <Route path='/' exact={true} component={Home}/>
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route path='/' exact={true} component={Home}/>
 
-            <Route path='/alunos' exact={true} component={AlunoList}/>
-            <Route path='/alunos/:id' component={AlunoEdit}/>
+                    <Route path='/alunos' exact={true} component={AlunoList}/>
+                    <Route path='/alunos/:id' component={AlunoEdit}/>
 
-              <Route path='/mentores' exact={true} component={MentorList}/>
-              <Route path='/mentores/:id' component={MentorEdit}/>
+                    <Route path='/mentores' exact={true} component={MentorList}/>
+                    <Route path='/mentores/:id' component={MentorEdit}/>
 
-              <Route path='/mentorias' exact={true} component={MentoriaList}/>
-              <Route path='/mentorias/:id' component={MentoriaEdit}/>
-          </Switch>
-        </Router>
-    )
-  }
+                    <Route path='/mentorias' exact={true} component={MentoriaList}/>
+                    <Route path='/mentorias/:id' component={MentoriaEdit}/>
+                </Switch>
+            </Router>
+        )
+    }
 }
 
 export default App;
