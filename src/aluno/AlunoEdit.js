@@ -40,6 +40,10 @@ class AlunoEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
+        //await pausa a função myAsyncFunction() até que a Promise dentro da função func1()
+        // seja resolvida. Então o valor retornado é atribuído à variável e o código de myAsyncFunction() continua
+        // de onde parou. Lembre-se: o comando await só pode ser executado dentro de uma função marcada como async.
+
         await fetch((item.id) ? '/alunos/' + item.id : '/alunos', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {

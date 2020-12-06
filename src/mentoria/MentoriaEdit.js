@@ -11,6 +11,11 @@ class MentoriaEdit extends Component {
         mentor: {id: '', nome: '', pais: ''}
     };
 
+    body = {
+        idAluno: '',
+        idMentor: ''
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -27,13 +32,12 @@ class MentoriaEdit extends Component {
         if (this.props.match.params.id !== 'new') {
             const mentorias = await (await fetch(`/mentorias/${this.props.match.params.id}`)).json();
             this.setState({mentorias: mentorias});
-
-            const alunos = await (await fetch(`/alunos`)).json();
-            this.setState({alunos: alunos});
-
-            const mentores = await (await fetch(`/mentores`)).json();
-            this.setState({mentores: mentores});
         }
+        const alunos = await (await fetch(`/alunos`)).json();
+        this.setState({alunos: alunos});
+
+        const mentores = await (await fetch(`/mentores`)).json();
+        this.setState({mentores: mentores});
     }
 
     handleChange(event) {
@@ -47,14 +51,18 @@ class MentoriaEdit extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        const {item} = this.state;
-        await fetch((item.id) ? '/mentorias/' + item.id : '/mentorias', {
-            method: (item.id) ? 'PUT' : 'POST',
+        const {mentorias} = this.state;
+        const body = this.body;
+        body.idAluno = this.state.selectAlunos.value;
+        body.idMentor = this.state.selectMentores.value;
+
+        await fetch((mentorias.id) ? '/mentorias/' + mentorias.id : '/mentorias', {
+            method: (mentorias.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(item),
+            body: JSON.stringify(body),
         });
         this.props.history.push('/mentorias');
     }
@@ -67,19 +75,17 @@ class MentoriaEdit extends Component {
         const title = <h2>{mentorias.id ? 'Editar Mentoria' : 'Adicionar Mentoria'}</h2>;
 
         const selectAlunos = alunos.map(aluno => {
-
             if (mentorias.aluno.id === aluno.id) {
-                return <option selected>{aluno.id} - {aluno.nome}</option>;
+                return <option value={aluno.id} selected>{aluno.id} - {aluno.nome}</option>;
             }
-            return <option>{aluno.id} - {aluno.nome}</option>;
+            return <option value={aluno.id}>{aluno.id} - {aluno.nome}</option>;
         });
 
         const selectMentores = mentores.map(mentor => {
-
             if (mentorias.mentor.id === mentor.id) {
-                return <option selected>{mentor.id} - {mentor.nome}</option>;
+                return <option value={mentor.id} selected>{mentor.id} - {mentor.nome}</option>;
             }
-            return <option>{mentor.id} - {mentor.nome}</option>;
+            return <option value={mentor.id}>{mentor.id} - {mentor.nome}</option>;
         });
 
         return <div>
@@ -90,7 +96,8 @@ class MentoriaEdit extends Component {
                     <FormGroup>
                         <div className="form-group col-md-4">
                             <Label for="aluno">Aluno</Label>
-                            <select id="aluno" className="form-control" name="aluno">
+                            <select id="aluno" className="form-control" name="aluno"
+                                    ref = {(input)=> this.state.selectAlunos = input}>
                                 {selectAlunos}
                             </select>
                         </div>
@@ -98,7 +105,8 @@ class MentoriaEdit extends Component {
                     <FormGroup>
                         <div className="form-group col-md-4">
                             <Label for="mentor">Mentor</Label>
-                            <select id="mentor" className="form-control" name="mentor">
+                            <select id="mentor" className="form-control" name="mentor"
+                                    ref = {(input)=> this.state.selectMentores = input}>
                                 {selectMentores}
                             </select>
                         </div>

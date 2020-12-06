@@ -16,6 +16,8 @@ class MentoriaList extends Component {
         fetch('/mentorias')
             .then(response => response.json())
             .then(data => this.setState({mentorias: data, isLoading: false}));
+
+
     }
 
     async remove(id) {
@@ -28,6 +30,7 @@ class MentoriaList extends Component {
         }).then(() => {
             let updatedMentorias = [...this.state.mentorias].filter(i => i.id !== id);
             this.setState({mentorias: updatedMentorias});
+
         });
     }
 
