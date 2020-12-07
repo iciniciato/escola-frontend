@@ -14,8 +14,10 @@ class NotaEdit extends Component {
     };
 
     body = {
+        nota: '',
         idMateria: '',
-        idMentoria: ''
+        idMentoria: '',
+        data: ''
     }
 
     constructor(props) {
@@ -23,7 +25,9 @@ class NotaEdit extends Component {
         this.state = {
             notas: this.emptyNota,
             materias: [],
-            mentorias: []
+            mentorias: [],
+            nota: '',
+            data: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -55,8 +59,10 @@ class NotaEdit extends Component {
         event.preventDefault();
         const {notas} = this.state;
         const body = this.body;
-        body.idMateria = this.state.selectMateria.value;
-        body.idMentoria = this.state.selectMentoria.value;
+        body.idMateria = this.state.selectMaterias.value;
+        body.idMentoria = this.state.selectMentorias.value;
+        body.nota = this.state.nota.props.value;
+        body.data = this.state.data.props.value;
 
         await fetch((notas.id) ? '/notas/' + notas.id : '/notas', {
             method: (notas.id) ? 'PUT' : 'POST',
@@ -116,11 +122,13 @@ class NotaEdit extends Component {
                     <FormGroup>
                         <Label for="nota">Nota</Label>
                         <Input type="text" name="nota" id="nota" value={notas.nota || ''}
+                               ref = {(input)=> this.state.nota = input}
                                onChange={this.handleChange} autoComplete="nota"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="data">Data</Label>
                         <Input type="text" name="data" id="data" value={notas.data || ''}
+                               ref = {(input)=> this.state.data = input}
                                onChange={this.handleChange} autoComplete="data"/>
                     </FormGroup>
                     <FormGroup>

@@ -73,7 +73,7 @@ class ProgramaList extends Component {
                             <th width="18%">Nome</th>
                             <th width="18%">Data Início</th>
                             <th width="18%">Data Fim</th>
-                            <th width="15%">Ano</th>
+                            <th width="18%">Ano</th>
                         </tr>
                         </thead>
                         <tbody>

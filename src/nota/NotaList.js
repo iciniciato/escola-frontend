@@ -73,7 +73,7 @@ class NotaList extends Component {
                             <th width="18%">Nota</th>
                             <th width="18%">Matéria</th>
                             <th width="18%">Mentoria</th>
-                            <th width="15%">Data</th>
+                            <th width="18%">Data</th>
                         </tr>
                         </thead>
                         <tbody>

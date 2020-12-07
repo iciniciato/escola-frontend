@@ -42,8 +42,8 @@ class AlunoList extends Component {
         const alunoList = alunos.map(aluno => {
             return <tr key={aluno.id}>
                 <td className="text-center">{aluno.id}</td>
-                <td className="text-center">{aluno.nome}</td>
-                <td className="text-center">{aluno.classe}</td>
+                <td className="">{aluno.nome}</td>
+                <td className="">{aluno.classe}</td>
                 <td>
                     <FormGroup className="float-right">
                         <Button className="btn btn-outline-primary" tag={Link}
