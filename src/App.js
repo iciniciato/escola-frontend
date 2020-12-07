@@ -8,6 +8,8 @@ import MentoriaList from './mentoria/MentoriaList';
 import MentoriaEdit from './mentoria/MentoriaEdit';
 import MentorList from './mentor/MentorList';
 import MentorEdit from './mentor/MentorEdit';
+import ProgramaList from './programa/ProgramaList';
+import ProgramaEdit from './programa/ProgramaEdit'
 
 class App extends Component {
     render() {
@@ -24,6 +26,9 @@ class App extends Component {
 
                     <Route path='/mentorias' exact={true} component={MentoriaList}/>
                     <Route path='/mentorias/:id' component={MentoriaEdit}/>
+
+                    <Route path='/programas' exact={true} component={ProgramaList}/>
+                    <Route path='/programas/:id' component={ProgramaEdit}/>
                 </Switch>
             </Router>
         )
