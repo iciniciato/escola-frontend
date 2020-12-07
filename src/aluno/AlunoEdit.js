@@ -5,7 +5,7 @@ import AppNavbar from '../AppNavbar';
 
 class AlunoEdit extends Component {
 
-    emptyItem = {
+    emptyAluno = {
         id: '',
         nome: '',
         classe: ''
@@ -14,7 +14,7 @@ class AlunoEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+            item: this.emptyAluno
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

@@ -5,7 +5,7 @@ import AppNavbar from '../AppNavbar';
 
 class MentorEdit extends Component {
 
-    emptyItem = {
+    emptyMentor = {
         id: '',
         nome: '',
         pais: ''
@@ -14,7 +14,7 @@ class MentorEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+            item: this.emptyMentor
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

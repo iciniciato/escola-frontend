@@ -12,6 +12,8 @@ import ProgramaList from './programa/ProgramaList';
 import ProgramaEdit from './programa/ProgramaEdit'
 import MateriaList from './materia/MateriaList';
 import MateriaEdit from './materia/MateriaEdit';
+import NotaList from './nota/NotaList';
+import NotaEdit from './nota/NotaEdit';
 
 class App extends Component {
     render() {
@@ -34,6 +36,9 @@ class App extends Component {
 
                     <Route path='/materias' exact={true} component={MateriaList}/>
                     <Route path='/materias/:id' component={MateriaEdit}/>
+
+                    <Route path='/notas' exact={true} component={NotaList}/>
+                    <Route path='/notas/:id' component={NotaEdit}/>
                 </Switch>
             </Router>
         )

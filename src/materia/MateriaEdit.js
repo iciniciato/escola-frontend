@@ -5,7 +5,7 @@ import AppNavbar from '../AppNavbar';
 
 class MateriaEdit extends Component {
 
-    emptyItem = {
+    emptyMateria = {
         id: '',
         nome: ''
     };
@@ -13,7 +13,7 @@ class MateriaEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+            item: this.emptyMateria
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
