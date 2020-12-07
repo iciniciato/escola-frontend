@@ -47,7 +47,7 @@ class NotaList extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{nota.mentoria.id}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{nota.data}</td>
                 <td>
-                    <FormGroup>
+                    <FormGroup className="float-right">
                         <Button type="button" className="btn btn-outline-primary" tag={Link}
                                 to={"/notas/" + nota.id}>Editar</Button>{' '}
                         <Button type="button" className="btn btn-outline-danger"
@@ -69,11 +69,11 @@ class NotaList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="20%">Id</th>
-                            <th width="20%">Nota</th>
-                            <th width="20%">Matéria</th>
-                            <th width="20%">Mentoria</th>
-                            <th width="20%">Data</th>
+                            <th width="18%">Id</th>
+                            <th width="18%">Nota</th>
+                            <th width="18%">Matéria</th>
+                            <th width="18%">Mentoria</th>
+                            <th width="15%">Data</th>
                         </tr>
                         </thead>
                         <tbody>

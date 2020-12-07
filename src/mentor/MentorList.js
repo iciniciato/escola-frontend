@@ -45,7 +45,7 @@ class MentorList extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{mentor.nome}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{mentor.pais}</td>
                 <td>
-                    <FormGroup>
+                    <FormGroup className="float-right">
                         <Button type="button" className="btn btn-outline-primary" tag={Link}
                                 to={"/mentores/" + mentor.id}>Editar</Button>{' '}
                         <Button type="button" className="btn btn-outline-danger"
@@ -67,9 +67,9 @@ class MentorList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="20%">Id</th>
-                            <th width="20%">Nome</th>
-                            <th width="20%">País</th>
+                            <th width="18%">Id</th>
+                            <th width="18%">Nome</th>
+                            <th width="18%">País</th>
                         </tr>
                         </thead>
                         <tbody>

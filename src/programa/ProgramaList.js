@@ -47,7 +47,7 @@ class ProgramaList extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{programa.dataFim}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{programa.ano}</td>
                 <td>
-                    <FormGroup>
+                    <FormGroup className="float-right">
                         <Button type="button" className="btn btn-outline-primary" tag={Link}
                                 to={"/programas/" + programa.id}>Editar</Button>{' '}
                         <Button type="button" className="btn btn-outline-danger"
@@ -69,11 +69,11 @@ class ProgramaList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="20%">Id</th>
-                            <th width="20%">Nome</th>
-                            <th width="20%">Data Início</th>
-                            <th width="20%">Data Fim</th>
-                            <th width="20%">Ano</th>
+                            <th width="18%">Id</th>
+                            <th width="18%">Nome</th>
+                            <th width="18%">Data Início</th>
+                            <th width="18%">Data Fim</th>
+                            <th width="15%">Ano</th>
                         </tr>
                         </thead>
                         <tbody>
