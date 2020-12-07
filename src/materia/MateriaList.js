@@ -41,13 +41,13 @@ class MateriaList extends Component {
 
         const materiaList = materias.map(materia => {
             return <tr key={materia.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{materia.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{materia.nome}</td>
+                <td className="text-center">{materia.id}</td>
+                <td className="text-center">{materia.nome}</td>
                 <td>
                     <FormGroup className="float-right">
-                        <Button type="button" className="btn btn-outline-primary" tag={Link}
+                        <Button className="btn btn-outline-primary" tag={Link}
                                 to={"/materias/" + materia.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger"
+                        <Button className="btn btn-outline-danger"
                                 onClick={() => this.remove(materia.id)}>Deletar</Button>
                     </FormGroup>
                 </td>
@@ -57,17 +57,17 @@ class MateriaList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
-                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/materias/new">Adicionar
+                        <Button className="btn btn-outline-success" tag={Link} to="/materias/new">Adicionar
                             Matéria</Button>
                     </div>
-                    <h3>Matéria</h3>
+                    <h2>Matéria</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr>
-                            <th width="18%">Id</th>
-                            <th width="18%">Nome</th>
+                        <tr className="text-center">
+                            <th width="5%">Id</th>
+                            <th width="25%">Nome</th>
                         </tr>
                         </thead>
                         <tbody>

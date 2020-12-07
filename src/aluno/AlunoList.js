@@ -41,14 +41,14 @@ class AlunoList extends Component {
 
         const alunoList = alunos.map(aluno => {
             return <tr key={aluno.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{aluno.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{aluno.nome}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{aluno.classe}</td>
+                <td className="text-center">{aluno.id}</td>
+                <td className="text-center">{aluno.nome}</td>
+                <td className="text-center">{aluno.classe}</td>
                 <td>
                     <FormGroup className="float-right">
-                        <Button type="button" className="btn btn-outline-primary" tag={Link}
+                        <Button className="btn btn-outline-primary" tag={Link}
                                 to={"/alunos/" + aluno.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger"
+                        <Button className="btn btn-outline-danger"
                                 onClick={() => this.remove(aluno.id)}>Deletar</Button>
                     </FormGroup>
                 </td>
@@ -58,16 +58,16 @@ class AlunoList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
-                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/alunos/new">Adicionar
+                        <Button className="btn btn-outline-success" tag={Link} to="/alunos/new">Adicionar
                             Aluno</Button>
                     </div>
-                    <h3>Alunos</h3>
+                    <h2>Alunos</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr>
-                            <th width="18%">Id</th>
+                        <tr className="text-center">
+                            <th width="5%">Id</th>
                             <th width="18%">Nome</th>
                             <th width="18%">Classe</th>
                         </tr>

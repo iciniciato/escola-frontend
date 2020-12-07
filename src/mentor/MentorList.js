@@ -41,14 +41,14 @@ class MentorList extends Component {
 
         const mentorList = mentores.map(mentor => {
             return <tr key={mentor.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{mentor.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{mentor.nome}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{mentor.pais}</td>
+                <td className="text-center">{mentor.id}</td>
+                <td className="text-center">{mentor.nome}</td>
+                <td className="text-center">{mentor.pais}</td>
                 <td>
                     <FormGroup className="float-right">
-                        <Button type="button" className="btn btn-outline-primary" tag={Link}
+                        <Button className="btn btn-outline-primary" tag={Link}
                                 to={"/mentores/" + mentor.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger"
+                        <Button className="btn btn-outline-danger"
                                 onClick={() => this.remove(mentor.id)}>Deletar</Button>
                     </FormGroup>
                 </td>
@@ -58,16 +58,16 @@ class MentorList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
-                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/mentores/new">Adicionar
+                        <Button className="btn btn-outline-success" tag={Link} to="/mentores/new">Adicionar
                             Mentor</Button>
                     </div>
-                    <h3>Mentores</h3>
+                    <h2>Mentores</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr>
-                            <th width="18%">Id</th>
+                        <tr className="text-center">
+                            <th width="5%">Id</th>
                             <th width="18%">Nome</th>
                             <th width="18%">País</th>
                         </tr>

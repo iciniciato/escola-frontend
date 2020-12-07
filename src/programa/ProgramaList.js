@@ -41,16 +41,16 @@ class ProgramaList extends Component {
 
         const programaList = programas.map(programa => {
             return <tr key={programa.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{programa.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{programa.nome}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{programa.dataInicio}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{programa.dataFim}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{programa.ano}</td>
+                <td className="text-center">{programa.id}</td>
+                <td className="text-center">{programa.nome}</td>
+                <td className="text-center">{programa.dataInicio}</td>
+                <td className="text-center">{programa.dataFim}</td>
+                <td className="text-center">{programa.ano}</td>
                 <td>
                     <FormGroup className="float-right">
-                        <Button type="button" className="btn btn-outline-primary" tag={Link}
+                        <Button className="btn btn-outline-primary" tag={Link}
                                 to={"/programas/" + programa.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger"
+                        <Button className="btn btn-outline-danger"
                                 onClick={() => this.remove(programa.id)}>Deletar</Button>
                     </FormGroup>
                 </td>
@@ -60,16 +60,16 @@ class ProgramaList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
-                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/programas/new">Adicionar
+                        <Button className="btn btn-outline-success" tag={Link} to="/programas/new">Adicionar
                             Programa</Button>
                     </div>
-                    <h3>Programas</h3>
+                    <h2>Programas</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr>
-                            <th width="18%">Id</th>
+                        <tr className="text-center">
+                            <th width="5%">Id</th>
                             <th width="18%">Nome</th>
                             <th width="18%">Data Início</th>
                             <th width="18%">Data Fim</th>

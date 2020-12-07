@@ -41,14 +41,14 @@ class MentoriaList extends Component {
         }
         const mentoriaList = mentorias.map(mentoria => {
             return <tr key={mentoria.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{mentoria.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{mentoria.aluno.nome}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{mentoria.mentor.nome}</td>
+                <td className="text-center">{mentoria.id}</td>
+                <td className="text-center">{mentoria.aluno.nome}</td>
+                <td className="text-center">{mentoria.mentor.nome}</td>
                 <td>
                     <FormGroup className="float-right">
-                        <Button type="button" className="btn btn-outline-primary" tag={Link}
+                        <Button className="btn btn-outline-primary" tag={Link}
                                 to={"/mentorias/" + mentoria.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger"
+                        <Button className="btn btn-outline-danger"
                                 onClick={() => this.remove(mentoria.id)}>Deletar</Button>
                     </FormGroup>
                 </td>
@@ -58,16 +58,16 @@ class MentoriaList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
-                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/mentorias/new">Adicionar
+                        <Button className="btn btn-outline-success" tag={Link} to="/mentorias/new">Adicionar
                             Mentoria</Button>
                     </div>
-                    <h3>Mentorias</h3>
+                    <h2>Mentorias</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr>
-                            <th width="18%">Id</th>
+                        <tr className="text-center">
+                            <th width="5%">Id</th>
                             <th width="18%">Aluno</th>
                             <th width="18%">Mentor</th>
                         </tr>

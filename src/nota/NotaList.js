@@ -41,16 +41,16 @@ class NotaList extends Component {
         }
         const notaList = notas.map(nota => {
             return <tr key={nota.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{nota.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{nota.nota}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{nota.materia.nome}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{nota.mentoria.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{nota.data}</td>
+                <td className="text-center">{nota.id}</td>
+                <td className="text-center">{nota.nota}</td>
+                <td className="text-center">{nota.materia.nome}</td>
+                <td className="text-center">{nota.mentoria.id}</td>
+                <td className="text-center">{nota.data}</td>
                 <td>
                     <FormGroup className="float-right">
-                        <Button type="button" className="btn btn-outline-primary" tag={Link}
+                        <Button className="btn btn-outline-primary" tag={Link}
                                 to={"/notas/" + nota.id}>Editar</Button>{' '}
-                        <Button type="button" className="btn btn-outline-danger"
+                        <Button className="btn btn-outline-danger"
                                 onClick={() => this.remove(nota.id)}>Deletar</Button>
                     </FormGroup>
                 </td>
@@ -60,16 +60,16 @@ class NotaList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
-                        <Button type="button" className="btn btn-outline-success" tag={Link} to="/notas/new">Adicionar
+                        <Button className="btn btn-outline-success" tag={Link} to="/notas/new">Adicionar
                             Nota</Button>
                     </div>
-                    <h3>Notas</h3>
+                    <h2>Notas</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr>
-                            <th width="18%">Id</th>
+                        <tr className="text-center">
+                            <th width="5%">Id</th>
                             <th width="18%">Nota</th>
                             <th width="18%">Matéria</th>
                             <th width="18%">Mentoria</th>

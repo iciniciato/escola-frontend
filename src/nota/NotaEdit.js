@@ -96,11 +96,6 @@ class NotaEdit extends Component {
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="nota">Nota</Label>
-                        <Input type="text" name="nota" id="nota" value={notas.nota || ''}
-                               onChange={this.handleChange} autoComplete="nota"/>
-                    </FormGroup>
-                    <FormGroup>
                         <div className="form-group col-md-4">
                             <Label for="materia">Matéria</Label>
                             <select id="materia" className="form-control" name="materia"
@@ -117,6 +112,11 @@ class NotaEdit extends Component {
                                 {selectMentorias}
                             </select>
                         </div>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="nota">Nota</Label>
+                        <Input type="text" name="nota" id="nota" value={notas.nota || ''}
+                               onChange={this.handleChange} autoComplete="nota"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="data">Data</Label>
