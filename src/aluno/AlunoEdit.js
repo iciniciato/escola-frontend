@@ -41,7 +41,6 @@ class AlunoEdit extends Component {
         return formIsValid;
     }
 
-
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
             const aluno = await (await fetch(`/alunos/${this.props.match.params.id}`)).json();

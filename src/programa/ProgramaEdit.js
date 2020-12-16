@@ -16,10 +16,26 @@ class ProgramaEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+            item: this.emptyItem,
+            fields: {},
+            errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    //Validação
+    handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        //Nome
+        if (!this.state.item.nome) {
+            formIsValid = false;
+        }
+
+        this.setState({errors: errors});
+        return formIsValid;
     }
 
     async componentDidMount() {
@@ -29,19 +45,25 @@ class ProgramaEdit extends Component {
         }
     }
 
-    handleChange(event) {
+    handleChange(field, event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
+        //Validação
+        let fields = this.state.fields;
+        fields[field] = event.target.value;
+        this.setState({fields});
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
 
+        //Validação
+        if (this.handleValidation()) {
         await fetch((item.id) ? '/programas/' + item.id : '/programas', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
@@ -51,6 +73,15 @@ class ProgramaEdit extends Component {
             body: JSON.stringify(item),
         });
         this.props.history.push('/programas');
+
+            if (item.id) {
+                alert("Programa alterado");
+            } else {
+                alert("Programa adicionado");
+            }
+        } else {
+            alert("Preencha todos os campos!!")
+        }
     }
 
     render() {
@@ -65,7 +96,7 @@ class ProgramaEdit extends Component {
                     <FormGroup>
                         <Label for="nome">Nome</Label>
                         <Input type="text" name="nome" id="nome" value={item.nome || ''}
-                               onChange={this.handleChange} autoComplete="nome"/>
+                               onChange={this.handleChange.bind(this, "nome")} autoComplete="nome"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="dataInicio">Data Início</Label>

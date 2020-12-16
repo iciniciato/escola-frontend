@@ -69,6 +69,7 @@ class MateriaEdit extends Component {
             body: JSON.stringify(item),
         });
         this.props.history.push('/materias');
+
             if (item.id) {
                 alert("Matéria alterada");
             } else {
