@@ -41,8 +41,8 @@ class MateriaList extends Component {
 
         const materiaList = materias.map(materia => {
             return <tr key={materia.id}>
-                <td className="text-center">{materia.id}</td>
-                <td className="text-center">{materia.nome}</td>
+                <td>{materia.id}</td>
+                <td>{materia.nome}</td>
                 <td>
                     <FormGroup className="float-right">
                         <Button className="btn btn-outline-primary" tag={Link}
@@ -65,9 +65,9 @@ class MateriaList extends Component {
                     <h2>Matéria</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr className="text-center">
-                            <th width="5%">Id</th>
-                            <th width="25%">Nome</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
                         </tr>
                         </thead>
                         <tbody>

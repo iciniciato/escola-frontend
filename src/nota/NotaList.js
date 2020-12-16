@@ -41,11 +41,11 @@ class NotaList extends Component {
         }
         const notaList = notas.map(nota => {
             return <tr key={nota.id}>
-                <td className="text-center">{nota.id}</td>
-                <td className="text-center">{nota.nota}</td>
-                <td className="text-center">{nota.materia.nome}</td>
-                <td className="text-center">{nota.mentoria.id}</td>
-                <td className="text-center">{nota.data}</td>
+                <td>{nota.id}</td>
+                <td>{nota.nota}</td>
+                <td>{nota.materia.nome}</td>
+                <td>{nota.mentoria.id}</td>
+                <td>{nota.data}</td>
                 <td>
                     <FormGroup className="float-right">
                         <Button className="btn btn-outline-primary" tag={Link}
@@ -68,12 +68,12 @@ class NotaList extends Component {
                     <h2>Notas</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr className="text-center">
-                            <th width="5%">Id</th>
-                            <th width="18%">Nota</th>
-                            <th width="18%">Matéria</th>
-                            <th width="18%">Mentoria</th>
-                            <th width="18%">Data</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nota</th>
+                            <th>Matéria</th>
+                            <th>Mentoria</th>
+                            <th>Data</th>
                         </tr>
                         </thead>
                         <tbody>

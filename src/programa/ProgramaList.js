@@ -41,11 +41,11 @@ class ProgramaList extends Component {
 
         const programaList = programas.map(programa => {
             return <tr key={programa.id}>
-                <td className="text-center">{programa.id}</td>
-                <td className="text-center">{programa.nome}</td>
-                <td className="text-center">{programa.dataInicio}</td>
-                <td className="text-center">{programa.dataFim}</td>
-                <td className="text-center">{programa.ano}</td>
+                <td>{programa.id}</td>
+                <td>{programa.nome}</td>
+                <td>{programa.dataInicio}</td>
+                <td>{programa.dataFim}</td>
+                <td>{programa.ano}</td>
                 <td>
                     <FormGroup className="float-right">
                         <Button className="btn btn-outline-primary" tag={Link}
@@ -68,12 +68,12 @@ class ProgramaList extends Component {
                     <h2>Programas</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr className="text-center">
-                            <th width="5%">Id</th>
-                            <th width="18%">Nome</th>
-                            <th width="18%">Data Início</th>
-                            <th width="18%">Data Fim</th>
-                            <th width="18%">Ano</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Data Início</th>
+                            <th>Data Fim</th>
+                            <th>Ano</th>
                         </tr>
                         </thead>
                         <tbody>

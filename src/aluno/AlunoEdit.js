@@ -14,11 +14,32 @@ class AlunoEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyAluno
+            item: this.emptyAluno,
+            fields: {},
+            errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        //Nome
+        if (!this.state.item.nome) {
+            formIsValid = false;
+        }
+
+        //Classe
+        if (!this.state.item.classe) {
+            formIsValid = false;
+        }
+
+        this.setState({errors: errors});
+        return formIsValid;
+    }
+
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
@@ -27,32 +48,43 @@ class AlunoEdit extends Component {
         }
     }
 
-    handleChange(event) {
-        const target = event.target;
+    handleChange(field, e) {
+        const target = e.target;
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
+        //validação
+        let fields = this.state.fields;
+        fields[field] = e.target.value;
+        this.setState({fields});
+
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
 
-        //await pausa a função myAsyncFunction() até que a Promise dentro da função func1()
-        // seja resolvida. Então o valor retornado é atribuído à variável e o código de myAsyncFunction() continua
-        // de onde parou. Lembre-se: o comando await só pode ser executado dentro de uma função marcada como async.
+        if (this.handleValidation()) {
+            await fetch((item.id) ? '/alunos/' + item.id : '/alunos', {
+                method: (item.id) ? 'PUT' : 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item),
+            });
+            this.props.history.push('/alunos');
 
-        await fetch((item.id) ? '/alunos/' + item.id : '/alunos', {
-            method: (item.id) ? 'PUT' : 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item),
-        });
-        this.props.history.push('/alunos');
+            if (item.id) {
+                alert("Aluno alterado");
+            } else {
+                alert("Aluno adicionado");
+            }
+        } else {
+            alert("Preencha todos os campos!!")
+        }
     }
 
     render() {
@@ -67,12 +99,12 @@ class AlunoEdit extends Component {
                     <FormGroup>
                         <Label for="nome">Nome</Label>
                         <Input type="text" name="nome" id="nome" value={item.nome || ''}
-                               onChange={this.handleChange} autoComplete="nome"/>
+                               onChange={this.handleChange.bind(this, "nome")} autoComplete="nome"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="classe">Classe</Label>
                         <Input type="text" name="classe" id="classe" value={item.classe || ''}
-                               onChange={this.handleChange} autoComplete="classe"/>
+                               onChange={this.handleChange.bind(this, "classe")} autoComplete="classe"/>
                     </FormGroup>
                     <FormGroup>
                         <Button className="btn btn-outline-success" type="submit">Salvar</Button>{' '}

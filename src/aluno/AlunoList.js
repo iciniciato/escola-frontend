@@ -41,9 +41,9 @@ class AlunoList extends Component {
 
         const alunoList = alunos.map(aluno => {
             return <tr key={aluno.id}>
-                <td className="text-center">{aluno.id}</td>
-                <td className="">{aluno.nome}</td>
-                <td className="">{aluno.classe}</td>
+                <td>{aluno.id}</td>
+                <td>{aluno.nome}</td>
+                <td>{aluno.classe}</td>
                 <td>
                     <FormGroup className="float-right">
                         <Button className="btn btn-outline-primary" tag={Link}
@@ -66,10 +66,10 @@ class AlunoList extends Component {
                     <h2>Alunos</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr className="text-center">
-                            <th width="5%">Id</th>
-                            <th width="18%">Nome</th>
-                            <th width="18%">Classe</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Classe</th>
                         </tr>
                         </thead>
                         <tbody>

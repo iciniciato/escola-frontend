@@ -41,9 +41,9 @@ class MentoriaList extends Component {
         }
         const mentoriaList = mentorias.map(mentoria => {
             return <tr key={mentoria.id}>
-                <td className="text-center">{mentoria.id}</td>
-                <td className="text-center">{mentoria.aluno.nome}</td>
-                <td className="text-center">{mentoria.mentor.nome}</td>
+                <td>{mentoria.id}</td>
+                <td>{mentoria.aluno.nome}</td>
+                <td>{mentoria.mentor.nome}</td>
                 <td>
                     <FormGroup className="float-right">
                         <Button className="btn btn-outline-primary" tag={Link}
@@ -66,10 +66,10 @@ class MentoriaList extends Component {
                     <h2>Mentorias</h2>
                     <Table className="mt-4">
                         <thead>
-                        <tr className="text-center">
-                            <th width="5%">Id</th>
-                            <th width="18%">Aluno</th>
-                            <th width="18%">Mentor</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Aluno</th>
+                            <th>Mentor</th>
                         </tr>
                         </thead>
                         <tbody>
