@@ -14,10 +14,31 @@ class MentorEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyMentor
+            item: this.emptyMentor,
+            fields: {},
+            errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    //Validação
+    handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        //Nome
+        if (!this.state.item.nome) {
+            formIsValid = false;
+        }
+
+        //País
+        if (!this.state.item.pais) {
+            formIsValid = false;
+        }
+
+        this.setState({errors: errors});
+        return formIsValid;
     }
 
     async componentDidMount() {
@@ -27,30 +48,44 @@ class MentorEdit extends Component {
         }
     }
 
-    handleChange(event) {
+    handleChange(field, event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
+        //Validação
+        let fields = this.state.fields;
+        fields[field] = event.target.value;
+        this.setState({fields});
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch((item.id) ? '/mentores/' + item.id : '/mentores', {
-            method: (item.id) ? 'PUT' : 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item),
-        });
-        this.props.history.push('/mentores');
-    }
+        //Validação
+        if (this.handleValidation()) {
+            await fetch((item.id) ? '/mentores/' + item.id : '/mentores', {
+                method: (item.id) ? 'PUT' : 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item),
+            });
+            this.props.history.push('/mentores');
 
+            if (item.id) {
+                alert("Mentor alterado");
+            } else {
+                alert("Mentor adicionado");
+            }
+        } else {
+            alert("Preencha todos os campos!!")
+        }
+    }
     render() {
         const {item} = this.state;
         const title = <h2>{item.id ? 'Editar Mentor' : 'Adicionar Mentor'}</h2>;
@@ -63,12 +98,12 @@ class MentorEdit extends Component {
                     <FormGroup>
                         <Label for="nome">Nome</Label>
                         <Input type="text" name="nome" id="nome" value={item.nome || ''}
-                               onChange={this.handleChange} autoComplete="nome"/>
+                               onChange={this.handleChange.bind(this, "nome")} autoComplete="nome"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="pais">País</Label>
                         <Input type="text" name="pais" id="pais" value={item.pais || ''}
-                               onChange={this.handleChange} autoComplete="pais"/>
+                               onChange={this.handleChange.bind(this, "pais")} autoComplete="pais"/>
                     </FormGroup>
                     <FormGroup>
                         <Button className="btn btn-outline-success" type="submit">Salvar</Button>{' '}

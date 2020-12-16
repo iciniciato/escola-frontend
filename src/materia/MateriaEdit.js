@@ -13,10 +13,25 @@ class MateriaEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyMateria
+            item: this.emptyMateria,
+            fields: {},
+            errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    //Validação
+    handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        //Nome
+        if (!this.state.item.nome) {
+            formIsValid = false;
+
+        }this.setState({errors: errors});
+        return formIsValid;
     }
 
     async componentDidMount() {
@@ -26,19 +41,25 @@ class MateriaEdit extends Component {
         }
     }
 
-    handleChange(event) {
+    handleChange(field, event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
+        //Validação
+        let fields = this.state.fields;
+        fields[field] = event.target.value;
+        this.setState({fields});
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
 
+        //Validação
+        if (this.handleValidation()) {
         await fetch((item.id) ? '/materias/' + item.id : '/materias', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
@@ -48,6 +69,14 @@ class MateriaEdit extends Component {
             body: JSON.stringify(item),
         });
         this.props.history.push('/materias');
+            if (item.id) {
+                alert("Matéria alterada");
+            } else {
+                alert("Matéria adicionada");
+            }
+        } else {
+            alert("Preencha todos os campos!!")
+        }
     }
 
     render() {
@@ -62,7 +91,7 @@ class MateriaEdit extends Component {
                     <FormGroup>
                         <Label for="nome">Nome</Label>
                         <Input type="text" name="nome" id="nome" value={item.nome || ''}
-                               onChange={this.handleChange} autoComplete="nome"/>
+                               onChange={this.handleChange.bind(this, "nome")} autoComplete="nome"/>
                     </FormGroup>
                     <FormGroup>
                         <Button className="btn btn-outline-success" type="submit">Salvar</Button>{' '}

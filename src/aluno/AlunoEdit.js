@@ -22,6 +22,7 @@ class AlunoEdit extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    //Validação
     handleValidation() {
         let errors = {};
         let formIsValid = true;
@@ -48,16 +49,16 @@ class AlunoEdit extends Component {
         }
     }
 
-    handleChange(field, e) {
-        const target = e.target;
+    handleChange(field, event) {
+        const target = event.target;
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
-        //validação
+        //Validação
         let fields = this.state.fields;
-        fields[field] = e.target.value;
+        fields[field] = event.target.value;
         this.setState({fields});
 
     }
@@ -66,6 +67,7 @@ class AlunoEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
+        //Validação
         if (this.handleValidation()) {
             await fetch((item.id) ? '/alunos/' + item.id : '/alunos', {
                 method: (item.id) ? 'PUT' : 'POST',
