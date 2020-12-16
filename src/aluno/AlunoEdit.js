@@ -27,14 +27,16 @@ class AlunoEdit extends Component {
         let errors = {};
         let formIsValid = true;
 
-        //Nome
-        if (!this.state.item.nome) {
+        if(!this.state.item.nome || !this.state.item.classe){
             formIsValid = false;
+            alert("Preencha todos os campos!!")
         }
 
-        //Classe
-        if (!this.state.item.classe) {
-            formIsValid = false;
+        if(typeof this.state.item.nome !== "undefined" && formIsValid){
+            if(!this.state.item.nome.match(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/)){
+                formIsValid = false;
+                alert("Preencha somente com letras!!")
+            }
         }
 
         this.setState({errors: errors});
@@ -83,8 +85,6 @@ class AlunoEdit extends Component {
             } else {
                 alert("Aluno adicionado");
             }
-        } else {
-            alert("Preencha todos os campos!!")
         }
     }
 
