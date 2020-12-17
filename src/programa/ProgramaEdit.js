@@ -35,10 +35,23 @@ class ProgramaEdit extends Component {
             alert("Preencha todos os campos!!")
         }
 
+        //Ano
+        if (!this.state.item.ano) {
+            formIsValid = false;
+            alert("Preencha todos os campos!!")
+        }
+
         if (typeof this.state.item.nome !== "undefined" && formIsValid) {
             if (!this.state.item.nome.match(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/)) {
                 formIsValid = false;
-                alert("Preencha somente com letras!!")
+                alert("Preencha o campo NOME somente com letras!!")
+            }
+        }
+
+        if (typeof this.state.item.ano !== "undefined" && formIsValid) {
+            if (!this.state.item.ano.match(/^\d+(\,\d{1,2})?$/)) {
+                formIsValid = false;
+                alert("Preencha o campo ANO somente com números!!")
             }
         }
         this.setState({errors: errors});
@@ -71,15 +84,15 @@ class ProgramaEdit extends Component {
 
         //Validação
         if (this.handleValidation()) {
-        await fetch((item.id) ? '/programas/' + item.id : '/programas', {
-            method: (item.id) ? 'PUT' : 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item),
-        });
-        this.props.history.push('/programas');
+            await fetch((item.id) ? '/programas/' + item.id : '/programas', {
+                method: (item.id) ? 'PUT' : 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item),
+            });
+            this.props.history.push('/programas');
 
             if (item.id) {
                 alert("Programa alterado");

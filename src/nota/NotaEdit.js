@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 import AppNavbar from '../AppNavbar';
+import DayPickerInput from "react-day-picker/DayPickerInput";
+
+import "react-day-picker/lib/style.css";
 
 class NotaEdit extends Component {
 
@@ -120,16 +123,18 @@ class NotaEdit extends Component {
                         </div>
                     </FormGroup>
                     <FormGroup>
+                        <div className="form-group col-md-4">
                         <Label for="nota">Nota</Label>
                         <Input type="text" name="nota" id="nota" value={notas.nota || ''}
                                ref = {(input)=> this.state.nota = input}
                                onChange={this.handleChange} autoComplete="nota"/>
+                        </div>
                     </FormGroup>
                     <FormGroup>
+                        <div className="form-group col-md-4">
                         <Label for="data">Data</Label>
-                        <Input type="text" name="data" id="data" value={notas.data || ''}
-                               ref = {(input)=> this.state.data = input}
-                               onChange={this.handleChange} autoComplete="data"/>
+                            <DayPickerInput placeholder="YYYY-MM-DD" format="YYYY-MM-DD" value={notas.data || new Date()} />
+                        </div>
                     </FormGroup>
                     <FormGroup>
                         <Button className="btn btn-outline-success" type="submit">Salvar</Button>{' '}
