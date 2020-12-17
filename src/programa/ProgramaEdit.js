@@ -32,8 +32,15 @@ class ProgramaEdit extends Component {
         //Nome
         if (!this.state.item.nome) {
             formIsValid = false;
+            alert("Preencha todos os campos!!")
         }
 
+        if (typeof this.state.item.nome !== "undefined" && formIsValid) {
+            if (!this.state.item.nome.match(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/)) {
+                formIsValid = false;
+                alert("Preencha somente com letras!!")
+            }
+        }
         this.setState({errors: errors});
         return formIsValid;
     }
@@ -79,8 +86,6 @@ class ProgramaEdit extends Component {
             } else {
                 alert("Programa adicionado");
             }
-        } else {
-            alert("Preencha todos os campos!!")
         }
     }
 

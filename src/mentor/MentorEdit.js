@@ -26,17 +26,21 @@ class MentorEdit extends Component {
     handleValidation() {
         let errors = {};
         let formIsValid = true;
+        let regex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
 
-        //Nome
-        if (!this.state.item.nome) {
+        if (!this.state.item.nome || !this.state.item.pais) {
             formIsValid = false;
+            alert("Preencha todos os campos!!")
         }
 
-        //País
-        if (!this.state.item.pais) {
-            formIsValid = false;
+        if ((typeof this.state.item.nome !== "undefined" ||
+            typeof this.state.item.pais !== "undefined") && formIsValid) {
+            if (!this.state.item.nome.match(regex) ||
+                !this.state.item.pais.match(regex)) {
+                formIsValid = false;
+                alert("Preencha somente com letras!!")
+            }
         }
-
         this.setState({errors: errors});
         return formIsValid;
     }
@@ -82,10 +86,9 @@ class MentorEdit extends Component {
             } else {
                 alert("Mentor adicionado");
             }
-        } else {
-            alert("Preencha todos os campos!!")
         }
     }
+
     render() {
         const {item} = this.state;
         const title = <h2>{item.id ? 'Editar Mentor' : 'Adicionar Mentor'}</h2>;

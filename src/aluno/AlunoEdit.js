@@ -27,18 +27,17 @@ class AlunoEdit extends Component {
         let errors = {};
         let formIsValid = true;
 
-        if(!this.state.item.nome || !this.state.item.classe){
+        if (!this.state.item.nome || !this.state.item.classe) {
             formIsValid = false;
             alert("Preencha todos os campos!!")
         }
 
-        if(typeof this.state.item.nome !== "undefined" && formIsValid){
-            if(!this.state.item.nome.match(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/)){
+        if (typeof this.state.item.nome !== "undefined" && formIsValid) {
+            if (!this.state.item.nome.match(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/)) {
                 formIsValid = false;
                 alert("Preencha somente com letras!!")
             }
         }
-
         this.setState({errors: errors});
         return formIsValid;
     }
